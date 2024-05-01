@@ -3,10 +3,14 @@
 # date:22 March 2024    
 # description: A class that stores name, location, and size data of a "person"
 #####################################################################
+from Constants import *
+import pygame
+
 # global Constants to restrict the maximum x and y values that a person object
 # can have.
 MAX_X = 800
 MAX_Y = 600
+
 
 # A class representing a person. A person can be initialized with a
 # name, as well as x and y coordinates. However, there are default
@@ -17,11 +21,10 @@ MAX_Y = 600
 # function that calculates the euclidean distance from another person 
 # object.
 class Item:
-    def __init__(self, name="player 1", x=0, y=0):
+    def __init__(self, name="player 1", sizeX=100, sizeY=100):
         self.name = name
-        self.x = x
-        self.y = y
-        self.size = 1
+        self.sizeX = sizeX
+        self.sizeY = sizeY
 
 #name getter and setter
     @property
@@ -34,64 +37,43 @@ class Item:
         else:
             self._name = "player 1"
 
-#x getter and setter
-    @property
-    def x(self):
-        return self._x
-    @x.setter
-    def x(self, newX):
-        if newX < 0:
-            self._x = 0
-        elif newX > MAX_X:
-            self._x = MAX_X
-        else:
-            self._x = newX
-
-#y getter and setter
-    @property
-    def y(self):
-        return self._y
-    @y.setter
-    def y(self, newY):
-        if newY < 0:
-            self._y = 0
-        elif newY > MAX_Y:
-            self._y = MAX_Y
-        else:
-            self._y = newY
-
 #size getter and setter
     @property
-    def size(self):
-        return self._size
-    @size.setter
-    def size(self, newSize):
+    def sizeX(self):
+        return self._sizeX
+    @sizeX.setter
+    def sizeX(self, newSize):
         if newSize >= 1:
-            self._size = newSize
+            self._sizeX = newSize
         else:
-            self._size = self.size
+            self._sizeX = self.sizeX
+    @property
+    def sizeY(self):
+        return self._sizeY
+    @sizeY.setter
+    def sizeY(self, newSize):
+        if newSize >= 1:
+            self._sizeY = newSize
+        else:
+            self._sizeY = self.sizeY
 
 #makes the person "go left" by decreasing x by 1
     def goLeft(self, distance=1):
-        self.x -= distance
+        self.rect.move_ip(-distance,0)
+        
 
 #makes the person "go right" by increasing x by 1
     def goRight(self, distance=1):
-        self.x += distance
+        self.rect.move_ip(distance,0)
 
 #makes the person "go up" by decreasing y by 1
     def goUp(self, distance=1):
-        self.y -= distance
+        self.rect.move_ip(0,-distance)
 
 #makes the person "go down" by increasing y by 1
     def goDown(self, distance=1):
-        self.y += distance
+        self.rect.move_ip(0,distance)
 
-#calculates the distance by using the euclidian distance formula
-#((x2-x1)^2+(y2-y1)^2)^(1/2)
-    def getDistance(self, other):
-        return ((self.x - other.x)**2+(self.y - other.y)**2)**(1/2)
-    
 #returns the string of important information on specified instance
     def __str__(self):
-        return f"{self.name}: \t size={self.size}, \t x={self.x} \t y={self.y}"
+        return f"{self.name}: \t sizeX={self.sizeX}, \t sizeY={self.sizeY}"

@@ -15,11 +15,21 @@ from Item import *
 WIDTH = 1000
 HEIGHT = 800
 
+PLAYERLENGTH = 10
+
+WALLWIDTH = (WIDTH - 300)/2
+WALLLENGTH = (HEIGHT - 300)/2
 #constants for color
-WHITE = [0xFF, 0xFF, 0xFF]
+WHITE = [0xD6, 0xD6, 0xD6]
+MAGENTA = [0xD6,0x47,0xD6]
+CYAN = [0x47,0xD6,0xD6]
+BLACK = [0x00,0x00,0x00]
+YELLOW = [0xD6,0xD6,0x47]
+
+COLORS = [WHITE, MAGENTA, CYAN, BLACK, YELLOW]
 
 #Timer for update
-UTIMER = 0.005
+UTIMER = 0.002
 
 # keys from pygame
 from pygame.locals import (
