@@ -249,8 +249,6 @@ def checkWin():
         elif box.name == "8":
             if box.topLeftX == 450 and box.topLeftY == 450:
                 correctBoxes.append("8")
-        elif findPosition(p.x,p.y) == (550,350):
-            correctBoxes.append("6")
         if correctBoxes == ["7","8","2","3","1","4","5"]:
             win()
         else:
@@ -258,8 +256,13 @@ def checkWin():
 
 
 def win():
-    print("You Win!")
-    RUNNING = False
+    global HASWON
+    global screen
+    if HASWON == False:
+        winState = ("Please Plug In USB")
+        print(winState)
+        RUNNING = False
+        HASWON = True
 
             
     
@@ -317,6 +320,8 @@ boxes = [b1,b2,b3,b4,b5,b6,b7]
 RUNNING = True
 
 FIRSTTIME = True
+
+HASWON = False
 
 while (RUNNING):
     # Look through all the events that happened in the last frame to see
